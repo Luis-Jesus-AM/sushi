@@ -3,9 +3,27 @@ app = Flask(__name__)
 
 @app.route("/")
 def index ():
-    arr = ["luis", "pedro", "becerro ", "pepito"]
-    autor = "Luis jesus Antonio Marin "
-    return render_template("index.html", nombre= autor, amigos = arr)
+    return render_template("index.html")
+
+@app.route("/menu")
+def menu ():
+    return render_template("menu.html")
+
+@app.route("/ani")
+def ani ():
+    return render_template("ani.html")
+
+@app.route("/vei")
+def vei ():
+    return render_template("vei.html")
+
+@app.route("/mun")
+def mun ():
+    return render_template("mun.html")
+
+@app.route("/ace")
+def ace ():
+    return render_template("ace.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
