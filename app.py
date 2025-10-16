@@ -1,9 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route("/")
 def index ():
     return render_template("index.html")
+
+@app.route("/registro")
+def registro ():
+    return render_template("registro.html")
+
+@app.route("/inici", methods=["GET", "POST"])
+def inici():
+    return render_template("inici.html")
+
+
 
 @app.route("/ani")
 def ani ():
@@ -20,6 +30,7 @@ def mun ():
 @app.route("/ace")
 def ace ():
     return render_template("ace.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

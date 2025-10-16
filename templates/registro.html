@@ -1,18 +1,14 @@
 {% extends "base.html" %}
 {% block contenido %}
 
-<div class="container d-flex flex-column min-vh-100 justify-content-center align-items-center bg-light py-4">
+<div class="d-flex justify-content-center align-items-center min-vh-100" style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
+    <div class="card shadow border-0" style="width: 420px; border-radius: 1.5rem;">
+        <div class="card-body px-5 py-4">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold mt-2 mb-1" style="color:#4f46e5;">Crea tu cuenta</h2>
+                <p class="text-muted mb-0">¡Únete a nuestra comunidad!</p>
+            </div>
 
-    <!-- Título principal -->
-    <h1 class="text-primary fw-bold mb-4">Regístrate en la mejor paguina</h1>
-
-    <!-- Tarjeta principal -->
-    <div class="card shadow-lg border-0" style="max-width: 400px; width: 100%;">
-        <div class="card-body">
-            <h2 class="card-title text-center fs-4 mb-3">Crea tu cuenta</h2>
-            <p class="text-muted text-center mb-4">Solo necesitamos un correo y una clave.</p>
-
-            <!-- Mensajes flash -->
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
@@ -23,42 +19,70 @@
                 {% endif %}
             {% endwith %}
 
-            <!-- Formulario -->
-            <form method="post" action="{{ url_for('register') }}" autocomplete="on" novalidate>
+            <form method="post" action="{{ url_for('registro') }}" autocomplete="on" novalidate>
                 {% if csrf_token %}
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 {% endif %}
 
-                <!-- Correo -->
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="correo" name="correo"
-                           placeholder="Correo electrónico" required>
+                    <label for="nombre" class="form-label fw-semibold">Nombre completo</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
                 </div>
 
-                <!-- Contraseña -->
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="contrasena" name="contrasena"
-                           placeholder="Contraseña (mín. 6 caracteres)" required minlength="6">
+                    <label for="usuario" class="form-label fw-semibold">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario" required>
                 </div>
 
-                <!-- Texto de condiciones -->
-                <p class="text-muted small text-center mb-3">
-                    Al registrarte, aceptas nuestras
-                    <a href="#" class="text-decoration-none text-primary">Condiciones de Servicio</a>.
-                </p>
+                <div class="mb-3">
+                    <label for="correo" class="form-label fw-semibold">Correo electrónico</label>
+                    <input type="email" class="form-control" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                </div>
 
-                <!-- Botón de envío -->
+                <div class="mb-3">
+                    <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Opcional">
+                </div>
+
+                <div class="mb-3">
+                    <label for="fecha_nacimiento" class="form-label fw-semibold">Fecha de nacimiento</label>
+                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="genero" class="form-label fw-semibold">Género</label>
+                    <select class="form-select" id="genero" name="genero" required>
+                        <option value="" selected disabled>Selecciona tu género</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                        <option value="prefiero_no_decirlo">Prefiero no decirlo</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="contrasena" class="form-label fw-semibold">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Mínimo 6 caracteres" required minlength="6">
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirmar_contrasena" class="form-label fw-semibold">Confirmar contraseña</label>
+                    <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" placeholder="Repite tu contraseña" required minlength="6">
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="acepto" name="acepto" required>
+                    <label class="form-check-label small" for="acepto">
+                        Acepto los <a href="#" class="text-decoration-none text-primary">Términos y Condiciones</a>
+                    </label>
+                </div>
+
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-success btn-lg">Registrarme</button>
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill">Registrarme</button>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="mt-4 text-muted small text-center">
-        Diseño Simple 2024
-    </footer>
 </div>
 
 {% endblock %}
